@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import { DetalleJugador } from './pages/DetalleJugador';
+import { Inicio } from './pages/Inicio';
+import { JugadorCarousel } from './pages/CarouselJugador';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ROUTES } from './router/routes';
 
-function App() {
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <View style={styles.container}>
+      <NavigationContainer>
+
+        <Stack.Navigator
+          initialRouteName={ROUTES.INICIO}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Stack.Screen
+            name={ROUTES.INICIO}
+            component={Inicio}
+          />
+          <Stack.Screen
+            name={ROUTES.DETALLE_JUGADOR}
+            component={DetalleJugador}
+          />
+          <Stack.Screen
+            name={ROUTES.CAROUSEL_JUGADOR}
+            component={JugadorCarousel}
+          />
+        </Stack.Navigator>
+
+      </NavigationContainer>
+
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+  },
+});
