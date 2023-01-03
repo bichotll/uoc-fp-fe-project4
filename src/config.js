@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken } from "firebase/messaging";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+// import { onBackgroundMessage } from "firebase/messaging/sw";
 import { getFirestore } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
@@ -24,6 +25,11 @@ getToken(messaging, {
     }
 }).catch((err) => {
     console.log('An error occurred while retrieving token. ', err);
+});
+
+onMessage(messaging, (payload) => {
+    console.log('Message received. ', payload);
+    // ...
 });
 
 export const db = getFirestore(app);
