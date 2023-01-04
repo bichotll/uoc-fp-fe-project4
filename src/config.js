@@ -18,6 +18,8 @@ export const messaging = getMessaging(app);
 getToken(messaging, {
     vapidKey: 'BD0BMmfFw5ko-gIi7eimFXImFdbszeAxW2Nxj6Y7X7yDFyKtuqKoC5CymALsUxYu_USk-GcHR-CIfKh53KoL45U',
 }).then(async (currentToken) => {
+    console.log('currentToken', currentToken)
+
     if (currentToken) {
         const db = getFirestore(app);
 
